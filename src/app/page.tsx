@@ -1,18 +1,14 @@
 "use client";
 
-import logo from "@/assets/logo.png";
-import resumePreview from "@/assets/resume-preview.jpg";
 import { CardStackDemo } from "@/components/CardStackDemo";
-import HeroResumePre from "@/components/HeroResumePre";
-import { AnimatedTestimonialsDemo } from "@/components/ui/AnimatedTestimonialsDemo";
+
 import { Button } from "@/components/ui/button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
-import { CardSpotlightDemo } from "@/components/ui/CardSpotlightDemo";
+
 import { Cover } from "@/components/ui/cover";
-import { FeaturesSectionDemo } from "@/components/ui/FeaturesSectionDemo";
-import ResumePreview from "@/components/ui/ResumePreview";
-import { FileCog, FileDown, NotebookPen, Tally1 } from "lucide-react";
-import Image from "next/image";
+
+import { FileCog, FileDown, NotebookPen } from "lucide-react";
+
 import Link from "next/link";
 
 export default function Home() {

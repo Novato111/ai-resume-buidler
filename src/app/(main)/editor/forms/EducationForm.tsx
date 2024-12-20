@@ -38,7 +38,7 @@ export default function EducationForm({
   resumeData,
   setResumeData,
 }: EditorFormProps) {
-  const form = useForm<educationValues>({
+  const form = useForm<EducationValues>({
     resolver: zodResolver(educationSchema),
     defaultValues: {
       educations: resumeData.educations || [],
@@ -134,7 +134,7 @@ export default function EducationForm({
 
 interface EducationItemProps {
   id: string;
-  form: UseFormReturn<educationValues>;
+  form: UseFormReturn<EducationValues>;
   index: number;
   remove: (index: number) => void;
 }

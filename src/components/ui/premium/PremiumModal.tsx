@@ -7,12 +7,10 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../dialog";
 import { Button } from "../button";
 import usePremiumModal from "@/hooks/usePremiumModal";
-import { set } from "date-fns";
-import { tree } from "next/dist/build/templates/app-page";
+
 import { createCheckoutSession } from "./action";
 
 const premiumFeatures = ["AI tools", "Up to 3 resumes"];
-const premiumPlusFeatures = ["Infinite resumes", "Design customizations"];
 
 export default function PremiumModal() {
   const { open, setOpen } = usePremiumModal();

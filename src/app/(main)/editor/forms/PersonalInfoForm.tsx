@@ -56,11 +56,13 @@ export default function PersonalInfoForm({
             render={({ field: { value, ...fieldValues } }) => (
               <FormItem>
                 <FormLabel>Your photo</FormLabel>
+
                 <div className="flex items-center gap-2">
                   <FormControl>
                     <Input
                       {...fieldValues}
                       type="file"
+                      className={value && " "}
                       accept="image/*"
                       onChange={(e) => {
                         const file = e.target.files?.[0];

@@ -5,6 +5,7 @@ import { formatDate } from "date-fns";
 import { Metadata } from "next";
 import Stripe from "stripe";
 import ManageSubscriptionButton from "./ManageSubscriptionButton";
+import GetSubscriptionButton from "./GetSubscriptionButton";
 
 export const metadata: Metadata = {
   title: "Billing",

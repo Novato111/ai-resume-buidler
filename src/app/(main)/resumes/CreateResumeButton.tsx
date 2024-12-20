@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import usePremiumModal from "@/hooks/usePremiumModal";
 import { PlusSquare } from "lucide-react";
-import { tree } from "next/dist/build/templates/app-page";
+
 import Link from "next/link";
 import React from "react";
 

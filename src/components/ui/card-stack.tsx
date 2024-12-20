@@ -1,16 +1,17 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import re1 from "@/assets/re1.png";
-import HeroResumePre from "../HeroResumePre";
-let interval: any;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+let interval: ReturnType<typeof setInterval>;
 
 type Card = {
   id: number;
   name: string;
   designation: string;
   content: React.ReactNode;
+  component: any;
 };
 
 export const CardStack = ({
