@@ -24,27 +24,28 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
 import { useReactToPrint } from "react-to-print";
 import LoadingButton from "@/components/ui/LoadingButton";
+
 interface ResumeItemProps {
   resume: ResumeServerData;
 }
 
 export default function ResumeItem({ resume }: ResumeItemProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null); // Corrected type for null
 
   const reactToPrintFn = useReactToPrint({
-    contentRef,
     documentTitle: resume.title || "Resume",
   });
-  const wasupdated = resume.updatedAt !== resume.createdAt;
+
+  const wasUpdated = resume.updatedAt !== resume.createdAt;
+
   return (
     <div className="group relative border rounded-lg border-transparent hover:border bg-gray-300">
       <div className="space-y-3">
         <Link
           href={`/editor?resumeId=${resume.id}`}
-          className="inline-block w-full text-center "
+          className="inline-block w-full text-center"
         >
           <p className="font-semibold line-clamp-1">
             {resume.title || "no title"}
@@ -53,32 +54,34 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
             <p className="line-clamp-2">{resume.description}</p>
           )}
           <p className="text-xs">
-            {wasupdated ? "Updated" : "Created"}on{" "}
-            {formatDate(resume.updatedAt, "MMM d,yyyy h:mm a")}
+            {wasUpdated ? "Updated" : "Created"} on{" "}
+            {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
         </Link>
         <Link
           href={`/editor?resumeId=${resume.id}`}
-          className=" relative inline-block w-full"
+          className="relative inline-block w-full"
         >
           <ResumePreview
             resumeData={mapToResumeValues(resume)}
             contentRef={contentRef}
-            className=" overflow-hidden shadow-sm  transition-shadow group-hover:shadow-xl"
-          ></ResumePreview>
-          <div className=" absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to to-transparent"></div>
+            className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-xl"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
         </Link>
       </div>
-      <MoreMenu onPrintClick={reactToPrintFn} resumeId={resume.id}></MoreMenu>
+      <MoreMenu onPrintClick={reactToPrintFn} resumeId={resume.id} />
     </div>
   );
 }
+
 interface MoreMenuProps {
   resumeId: string;
   onPrintClick: () => void;
 }
+
 function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
-  const [showDelteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   return (
     <>
@@ -89,7 +92,7 @@ function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
             size="icon"
             className="absolute right-0.5 top-0.5 opacity-0 transition-opacity group-hover:opacity-100"
           >
-            <MoreVertical></MoreVertical>
+            <MoreVertical />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -97,22 +100,23 @@ function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
             className="flex items-center gap-2"
             onClick={() => setShowDeleteConfirmation(true)}
           >
-            <Trash2 className="size-4"></Trash2>
+            <Trash2 className="size-4" />
             Delete
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center gap-2"
             onClick={onPrintClick}
           >
-            <Printer className="size-4"></Printer>Print
+            <Printer className="size-4" />
+            Print
           </DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu>{" "}
+      </DropdownMenu>
       <DeleteConfirmationDialog
         resumeId={resumeId}
-        open={showDelteConfirmation}
+        open={showDeleteConfirmation}
         onOpenChange={setShowDeleteConfirmation}
-      ></DeleteConfirmationDialog>
+      />
     </>
   );
 }
@@ -130,6 +134,7 @@ function DeleteConfirmationDialog({
 }: DeleteConfirmationDialogProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
+
   async function handleDelete() {
     startTransition(async () => {
       try {
@@ -139,11 +144,12 @@ function DeleteConfirmationDialog({
         console.error(error);
         toast({
           variant: "destructive",
-          description: "something went wrong. Please try again.",
+          description: "Something went wrong. Please try again.",
         });
       }
     });
   }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -151,7 +157,7 @@ function DeleteConfirmationDialog({
           <DialogTitle>Delete resume?</DialogTitle>
           <DialogDescription>
             This will permanently delete this resume. This action cannot be
-            undone
+            undone.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

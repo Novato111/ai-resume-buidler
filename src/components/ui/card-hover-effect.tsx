@@ -12,7 +12,7 @@ export const HoverEffect = ({
     id: number;
     title: string;
     description: string;
-    link: string;
+    link: React.JSX.Element;
   }[];
   className?: string;
 }) => {
@@ -27,7 +27,7 @@ export const HoverEffect = ({
     >
       {items.map((item, idx) => (
         <Link
-          href={item?.link}
+          href=""
           key={item?.id}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}

@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { EditorFormProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { workExperienceSchema, workExperienceValues } from "@/lib/validation";
+import { workExperienceSchema, WorkExperienceValues } from "@/lib/validation";
 import {
   closestCenter,
   DndContext,
@@ -41,7 +41,7 @@ export default function WorkExperienceForm({
   resumeData,
   setResumeData,
 }: EditorFormProps) {
-  const form = useForm<workExperienceValues>({
+  const form = useForm<WorkExperienceValues>({
     resolver: zodResolver(workExperienceSchema),
     defaultValues: {
       workExperiences: resumeData.workExperiences || [],
