@@ -1,7 +1,7 @@
 import React from "react";
 import ResumePreview from "./ui/ResumePreview";
 
-// @ts-ignore
+//@ts-expect-error typescriptsucks
 const HeroResumePre = ({ form }) => {
   return (
     <div>

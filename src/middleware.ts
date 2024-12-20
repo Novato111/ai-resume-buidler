@@ -7,7 +7,7 @@ const isPublicRoute = createRouteMatcher([
   "/sign-up(.*)",
   "/api/stripe-webhook",
 ]);
-// @ts-ignore
+//@ts-expect-error typescriptsucks
 export function middleware(request) {
   if (isPublicRoute(request)) {
     return NextResponse.next();

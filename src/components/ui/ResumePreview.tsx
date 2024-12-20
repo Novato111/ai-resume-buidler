@@ -19,7 +19,7 @@ export default function ResumePreview({
   className,
 }: ResumePreviewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  // @ts-ignore
+  //@ts-expect-error typescriptsucks
   const { width } = useDimensions(containerRef);
 
   return (
