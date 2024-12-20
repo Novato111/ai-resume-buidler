@@ -1,6 +1,7 @@
 "use server";
 
-import { HfInference } from "@huggingface/inference";
+import openai from "@/lib/openai";
+
 import {
   GenerateSummaryInput,
   generateSummarySchema,
@@ -9,9 +10,6 @@ import {
   WorkExperience,
 } from "@/lib/validation";
 import { auth } from "@clerk/nextjs/server";
-
-// Initialize Hugging Face inference client
-const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
 export async function generateSummary(input: GenerateSummaryInput) {
   const { userId } = await auth();
@@ -58,27 +56,30 @@ export async function generateSummary(input: GenerateSummaryInput) {
       ${skills}
     `;
 
-  try {
-    const response = await hf.textGeneration({
-      model: "gpt-3.5-turbo", // Switch to a better model if available
-      inputs: `${systemMessage}\n${userMessage}`,
-      parameters: {
-        max_new_tokens: 500,
-        temperature: 0.7,
+  console.log("systemMessage", systemMessage);
+  console.log("userMessage", userMessage);
+
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: systemMessage,
       },
-    });
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ],
+  });
 
-    const aiResponse = response.generated_text;
+  const aiResponse = completion.choices[0].message.content;
 
-    if (!aiResponse) {
-      throw new Error("Failed to generate AI response");
-    }
-
-    return aiResponse;
-  } catch (error) {
-    console.error("Error generating summary:", error);
-    throw new Error("Failed to generate summary");
+  if (!aiResponse) {
+    throw new Error("Failed to generate AI response");
   }
+
+  return aiResponse;
 }
 
 export async function generateWorkExperience(
@@ -108,35 +109,33 @@ export async function generateWorkExperience(
   ${description}
   `;
 
-  try {
-    const response = await hf.textGeneration({
-      model: "gpt-3.5-turbo", // Switch to a better model if available
-      inputs: `${systemMessage}\n${userMessage}`,
-      parameters: {
-        max_new_tokens: 500,
-        temperature: 0.7,
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: systemMessage,
       },
-    });
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ],
+  });
 
-    const aiResponse = response.generated_text;
+  const aiResponse = completion.choices[0].message.content;
 
-    if (!aiResponse) {
-      throw new Error("Failed to generate AI response");
-    }
-
-    console.log("aiResponse", aiResponse);
-
-    return {
-      position: aiResponse.match(/Job title: (.*)/)?.[1] || "",
-      company: aiResponse.match(/Company: (.*)/)?.[1] || "",
-      description: (
-        aiResponse.match(/Description:([\s\S]*)/)?.[1] || ""
-      ).trim(),
-      startDate: aiResponse.match(/Start date: (\d{4}-\d{2}-\d{2})/)?.[1],
-      endDate: aiResponse.match(/End date: (\d{4}-\d{2}-\d{2})/)?.[1],
-    } satisfies WorkExperience;
-  } catch (error) {
-    console.error("Error generating work experience:", error);
-    throw new Error("Failed to generate work experience");
+  if (!aiResponse) {
+    throw new Error("Failed to generate AI response");
   }
+
+  console.log("aiResponse", aiResponse);
+
+  return {
+    position: aiResponse.match(/Job title: (.*)/)?.[1] || "",
+    company: aiResponse.match(/Company: (.*)/)?.[1] || "",
+    description: (aiResponse.match(/Description:([\s\S]*)/)?.[1] || "").trim(),
+    startDate: aiResponse.match(/Start date: (\d{4}-\d{2}-\d{2})/)?.[1],
+    endDate: aiResponse.match(/End date: (\d{4}-\d{2}-\d{2})/)?.[1],
+  } satisfies WorkExperience;
 }
