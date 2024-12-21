@@ -1,7 +1,5 @@
 "use server";
 
-import openai from "@/lib/openai";
-
 import {
   GenerateSummaryInput,
   generateSummarySchema,
@@ -10,6 +8,11 @@ import {
   WorkExperience,
 } from "@/lib/validation";
 import { auth } from "@clerk/nextjs/server";
+
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+const genAI = new GoogleGenerativeAI("AIzaSyDXid0L-u6NnuudW86OqRml_MT-tbiq-mY"); // Replace with your actual API key
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Replace with the correct model
 
 export async function generateSummary(input: GenerateSummaryInput) {
   const { userId } = await auth();
@@ -24,7 +27,7 @@ export async function generateSummary(input: GenerateSummaryInput) {
   const systemMessage = `
     You are a job resume generator AI. Your task is to write a professional introduction summary for a resume given the user's provided data.
     Only return the summary and do not include any other information in the response. Keep it concise and professional.
-    `;
+  `;
 
   const userMessage = `
     Please generate a professional resume summary from this data:
@@ -43,7 +46,7 @@ export async function generateSummary(input: GenerateSummaryInput) {
       )
       .join("\n\n")}
 
-      Education:
+    Education:
     ${educations
       ?.map(
         (edu) => `
@@ -52,28 +55,24 @@ export async function generateSummary(input: GenerateSummaryInput) {
       )
       .join("\n\n")}
 
-      Skills:
-      ${skills}
-    `;
+    Skills:
+    ${skills}
+  `;
 
-  console.log("systemMessage", systemMessage);
-  console.log("userMessage", userMessage);
-
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "system",
-        content: systemMessage,
-      },
-      {
-        role: "user",
-        content: userMessage,
-      },
-    ],
+  // Send request to Gemini API
+  const chatSession = model.startChat({
+    generationConfig: {
+      temperature: 0.8,
+      topP: 0.95,
+      topK: 40,
+      maxOutputTokens: 8192,
+      responseMimeType: "text/plain",
+    },
+    history: [],
   });
 
-  const aiResponse = completion.choices[0].message.content;
+  const result = await chatSession.sendMessage(systemMessage + userMessage);
+  const aiResponse = result.response.text();
 
   if (!aiResponse) {
     throw new Error("Failed to generate AI response");
@@ -94,36 +93,35 @@ export async function generateWorkExperience(
   const { description } = generateWorkExperienceSchema.parse(input);
 
   const systemMessage = `
-  You are a job resume generator AI. Your task is to generate a single work experience entry based on the user input.
-  Your response must adhere to the following structure. You can omit fields if they can't be inferred from the provided data, but don't add any new ones.
+    You are a job resume generator AI. Your task is to generate a single work experience entry based on the user input.
+    Your response must adhere to the following structure. You can omit fields if they can't be inferred from the provided data, but don't add any new ones.
 
-  Job title: <job title>
-  Company: <company name>
-  Start date: <format: YYYY-MM-DD> (only if provided)
-  End date: <format: YYYY-MM-DD> (only if provided)
-  Description: <an optimized description in bullet format, might be inferred from the job title>
+    Job title: <job title>
+    Company: <company name>
+    Start date: <format: YYYY-MM-DD> (only if provided)
+    End date: <format: YYYY-MM-DD> (only if provided)
+    Description: <an optimized description in bullet format, might be inferred from the job title>
   `;
 
   const userMessage = `
-  Please provide a work experience entry from this description:
-  ${description}
+    Please provide a work experience entry from this description:
+    ${description}
   `;
 
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "system",
-        content: systemMessage,
-      },
-      {
-        role: "user",
-        content: userMessage,
-      },
-    ],
+  // Send request to Gemini API
+  const chatSession = model.startChat({
+    generationConfig: {
+      temperature: 0.8,
+      topP: 0.95,
+      topK: 40,
+      maxOutputTokens: 8192,
+      responseMimeType: "text/plain",
+    },
+    history: [],
   });
 
-  const aiResponse = completion.choices[0].message.content;
+  const result = await chatSession.sendMessage(systemMessage + userMessage);
+  const aiResponse = result.response.text();
 
   if (!aiResponse) {
     throw new Error("Failed to generate AI response");
