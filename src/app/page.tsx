@@ -41,7 +41,7 @@ export default function Home() {
           <h1 className=" font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             <Cover> Build Your resume</Cover>
             <span className="inline-block bg-gradient-to-r from-green-300 to-green-900 bg-clip-text text-transparent">
-              The Smart way
+              The Pro way
             </span>{" "}
           </h1>
           <p className="text-lg text-white">
