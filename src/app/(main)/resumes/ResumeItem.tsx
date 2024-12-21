@@ -35,13 +35,15 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement | null>(null); // Corrected type for null
 
   const reactToPrintFn = useReactToPrint({
+    //@ts-expect-error
+    contentRef,
     documentTitle: resume.title || "Resume",
   });
 
   const wasUpdated = resume.updatedAt !== resume.createdAt;
 
   return (
-    <div className="group relative border rounded-lg border-transparent hover:border bg-gray-300">
+    <div className="group relative border rounded-lg border-transparent hover:border bg-gray-400">
       <div className="space-y-3">
         <Link
           href={`/editor?resumeId=${resume.id}`}

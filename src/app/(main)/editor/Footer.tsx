@@ -64,7 +64,7 @@ const Footer = ({
         </Button>
         <div className="flex items-center gap-3 ">
           <Button variant="secondary" asChild>
-            <Link href={"/resumes"}>close</Link>
+            <Link href={"/resumes"}>close & print </Link>
           </Button>
 
           <p

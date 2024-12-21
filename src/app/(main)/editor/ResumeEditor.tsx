@@ -6,13 +6,15 @@ import { steps } from "./steps";
 
 import Breadcrumbs from "./Breadcrumbs";
 import Footer from "./Footer";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import ResumePreviewSection from "./ResumePreviewSections";
 import { cn, mapToResumeValues } from "@/lib/utils";
 import useUnloadWarning from "@/hooks/useUnloadWarning";
 import useAutoSaveResume from "./useAutoSaveResume";
 import { ResumeServerData } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { useReactToPrint } from "react-to-print";
 
 interface ResumeEditorProps {
   resumeToEdit: ResumeServerData | null;
@@ -38,6 +40,7 @@ export default function ResumeEditor({ resumeToEdit }: ResumeEditorProps) {
     (step) => step.key === currentStep
   )?.component;
 
+  console.log(resumeData.id);
   return (
     <div className=" flex grow flex-col min-h-screen scale-90 ">
       <header className="space-y-1 border-b px-3  text-center">
