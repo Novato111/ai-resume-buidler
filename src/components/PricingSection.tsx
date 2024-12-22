@@ -26,7 +26,7 @@ const plans = [
     button: {
       text: "Get Started",
       href: "/create",
-      variant: "outline" as const,
+      variant: "secondary" as const,
     },
   },
   {
@@ -54,7 +54,7 @@ const plans = [
 
 export default function PricingSection() {
   return (
-    <div id="pricing" className="py-24 sm:py-32">
+    <div id="pricing" className="py-24 sm:py-32 scale-75">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">

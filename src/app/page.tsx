@@ -2,12 +2,12 @@
 
 import AIShowcase from "@/components/AIShowcase";
 import { CardStackDemo } from "@/components/CardStackDemo";
-import Features from "@/components/Features";
+
 import FeaturesGrid from "@/components/FeaturesGrid";
 import PricingSection from "@/components/PricingSection";
 
 import { Button } from "@/components/ui/button";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
+
 import { Cover } from "@/components/ui/cover";
 import { FileCog, FileDown, NotebookPen } from "lucide-react";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-black/90">
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
+      <div className="  absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
       </div>
 
@@ -61,13 +61,15 @@ export default function Home() {
               effortless and intuitive.
             </p>
           </div>
-          <div className="flex gap-4 justify-center md:justify-start">
+          <div className="flex gap-4 justify-center md:justify-start text-white">
             <Button
               asChild
               size="lg"
-              className="bg-purple-600 hover:bg-purple-700"
+              className="bg-purple-600 hover:bg-purple-700 text-white hover:bg-transparent hover:underline"
             >
-              <Link href="/resumes">Launch App</Link>
+              <Link href="/resumes" className="font-bold">
+                Create Resume
+              </Link>
             </Button>
             <Button
               asChild
@@ -75,7 +77,7 @@ export default function Home() {
               variant="outline"
               className="border-purple-500 text-purple-400 hover:bg-purple-400/50"
             >
-              <Link href="#learn-more">Learn More</Link>
+              <Link href="#pricing">Learn More</Link>
             </Button>
           </div>
         </div>
@@ -96,9 +98,13 @@ export default function Home() {
          text-black"
       >
         <AIShowcase></AIShowcase>
-        <PricingSection></PricingSection>
-        <FeaturesGrid></FeaturesGrid>
       </div>
+      <div id="Pricing">
+        {" "}
+        <PricingSection></PricingSection>
+      </div>
+
+      <FeaturesGrid></FeaturesGrid>
     </div>
   );
 }

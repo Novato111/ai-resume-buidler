@@ -14,9 +14,9 @@ export default function Navbar() {
   const { theme } = useTheme();
 
   return (
-    <header className="shadow-sm">
+    <header className="shadow-sm ">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 p-x-4 ">
-        <Link href="/resumes" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src={logo}
             alt="Logo"
@@ -24,7 +24,7 @@ export default function Navbar() {
             height={50}
             className="rounded-full"
           />
-          <span className="text-xl font-bold tracking-tight">
+          <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
             AI Resume Builder
           </span>
         </Link>

@@ -49,10 +49,13 @@ const features = [
 
 export default function FeaturesGrid() {
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="py-24 sm:py-32 bg-gradient-to-r relative">
+      {/* Subtle glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-800 via-transparent to-indigo-800 opacity-50 blur-lg"></div>
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl drop-shadow-md">
             Everything you need to create the perfect resume
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-300">
@@ -61,13 +64,15 @@ export default function FeaturesGrid() {
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:max-w-none">
-          <div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none lg:grid-cols-3">
+          <div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
               <FeatureCard
                 key={feature.title}
                 title={feature.title}
                 description={feature.description}
                 icon={feature.icon}
+                //@ts-expect-error
+                className="rounded-lg  p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
               />
             ))}
           </div>
