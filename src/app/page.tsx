@@ -63,7 +63,7 @@ export default function Home() {
               Testimonials
             </a>
           </div>
-          <Link  href={"/resume"}className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl">
+          <Link  href={"/resumes"}className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl">
 
           </Link>
         </nav>
@@ -94,7 +94,7 @@ export default function Home() {
               Join over 1 million professionals who've transformed their careers with our AI-powered resume builder. Stand out from the competition with perfectly crafted resumes.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-            <Link href={"/resume"} className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-10 py-4 rounded-lg hover:from-indigo-700 hover:to-violet-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center group">
+            <Link href={"/resumes"} className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-10 py-4 rounded-lg hover:from-indigo-700 hover:to-violet-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center group">
  Create Resume for Free
   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
 </Link>
