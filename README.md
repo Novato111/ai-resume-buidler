@@ -10,13 +10,13 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Ai%20Resume%20Builder-dI8NsLFkcoXf5hz24vGxLMeB4oageg.jpeg" alt="project-screenshot" width="900" height="500/">
+<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Ai%20Resume%20Builder-dI8NsLFkcoXf5hz24vGxLMeB4oageg.jpeg" alt="project-screenshot" width="1920" height="1080/">
 
-<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.38.30%E2%80%AFAM-n59mGdQtxqCGuawKe1MPBdbwlv24Ct.png" alt="project-screenshot" width="900" height="900/">
+<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.38.30%E2%80%AFAM-n59mGdQtxqCGuawKe1MPBdbwlv24Ct.png" alt="project-screenshot" width="1920" height="1080/">
 
-<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.38.42%E2%80%AFAM-w6SuTpVgiu9AZjBUidQaAKHscZv0Qr.png" alt="project-screenshot" width="900" height="900/">
+<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.38.42%E2%80%AFAM-w6SuTpVgiu9AZjBUidQaAKHscZv0Qr.png" alt="project-screenshot" width="1920" height="1080/">
 
-<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.39.12%E2%80%AFAM-dILEriy6K57WEgFJzOoIL2PKG4SFwU.png" alt="project-screenshot" width="900" height="900/">
+<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.39.12%E2%80%AFAM-dILEriy6K57WEgFJzOoIL2PKG4SFwU.png" alt="project-screenshot" width="1920" height="1080/">
 
   
   
