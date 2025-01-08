@@ -10,7 +10,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Ai%20Resume%20Builder-dI8NsLFkcoXf5hz24vGxLMeB4oageg.jpeg" alt="project-screenshot" width="900" height="900/">
+<img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Ai%20Resume%20Builder-dI8NsLFkcoXf5hz24vGxLMeB4oageg.jpeg" alt="project-screenshot" width="900" height="500/">
 
 <img src="https://dpbducyqwhi6dzfk.public.blob.vercel-storage.com/misc/ssforgithub/airesume/Screenshot%202025-01-08%20at%2010.38.30%E2%80%AFAM-n59mGdQtxqCGuawKe1MPBdbwlv24Ct.png" alt="project-screenshot" width="900" height="900/">
 
