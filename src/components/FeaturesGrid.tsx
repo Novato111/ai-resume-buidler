@@ -49,9 +49,8 @@ const features = [
 
 export default function FeaturesGrid() {
   return (
-    <div className="py-24 sm:py-32 bg-gradient-to-r relative">
+    <div className="py-24  z-20 sm:py-32  relative b">
       {/* Subtle glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-800 via-transparent to-indigo-800 opacity-50 blur-lg"></div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
