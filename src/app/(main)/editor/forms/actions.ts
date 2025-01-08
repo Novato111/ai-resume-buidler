@@ -11,7 +11,7 @@ import { auth } from "@clerk/nextjs/server";
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI("AIzaSyDXid0L-u6NnuudW86OqRml_MT-tbiq-mY"); // Replace with your actual API key
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API)
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Replace with the correct model
 
 export async function generateSummary(input: GenerateSummaryInput) {
